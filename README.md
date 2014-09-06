@@ -1,4 +1,4 @@
 CacheTempData
 =============
 
-Cache based TempData provider for ASP.NET MVC
+ObjectCache-based TempData provider for ASP.NET MVC.
