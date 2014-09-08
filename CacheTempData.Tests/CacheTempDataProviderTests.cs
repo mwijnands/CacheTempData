@@ -34,7 +34,7 @@ namespace XperiCode.CacheTempData.Tests
 
             cacheMock.Verify(c => c.Set(
                 It.Is<string>(s => s.StartsWith("[XperiCode.CacheTempData.SessionId].[")), 
-                It.Is<CacheTempDataItem>(i => i.Data["name"] == "John Doe"), 
+                It.Is<CacheTempDataItem>(i => Convert.ToString(i.Data["name"]) == "John Doe"), 
                 null, 
                 null), Times.Once);
         }
@@ -62,7 +62,7 @@ namespace XperiCode.CacheTempData.Tests
 
             cacheMock.Verify(c => c.Set(
                 It.Is<string>(s => s == string.Concat("[XperiCode.CacheTempData.SessionId].[", sessionId, "]")), 
-                It.Is<CacheTempDataItem>(i => i.Data["name"] == "John Doe"), 
+                It.Is<CacheTempDataItem>(i => Convert.ToString(i.Data["name"]) == "John Doe"), 
                 null, 
                 null), Times.Once);
         }
@@ -97,7 +97,7 @@ namespace XperiCode.CacheTempData.Tests
             var values = provider.LoadTempData(controllerContextMock.Object);
 
             Assert.IsNotNull(values);
-            Assert.IsTrue(values["name"] == "John Doe");
+            Assert.IsTrue(Convert.ToString(values["name"]) == "John Doe");
 
             cacheMock.Verify(c => c.Remove(cacheKey, null), Times.Once);
 
