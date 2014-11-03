@@ -4,7 +4,7 @@
 
 [![Build status](http://img.shields.io/appveyor/ci/mwijnands/cachetempdata.svg?style=flat)](https://ci.appveyor.com/project/mwijnands/cachetempdata) [![NuGet version](http://img.shields.io/nuget/v/XperiCode.CacheTempData.svg?style=flat)](https://www.nuget.org/packages/XperiCode.CacheTempData)
 
-# Installation
+## Installation
 
 The `CacheTempData` package is available at [NuGet](https://www.nuget.org/packages/XperiCode.CacheTempData). To install `CacheTempData`, run the following command in the [Package Manager Console](http://docs.nuget.org/docs/start-here/using-the-package-manager-console):
 
