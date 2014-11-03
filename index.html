@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="CacheTempData : ObjectCache-based TempData provider for ASP.NET MVC.">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>CacheTempData</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/mwijnands/CacheTempData">View on GitHub</a>
+
+          <h1 id="project_title">CacheTempData</h1>
+          <h2 id="project_tagline">ObjectCache-based TempData provider for ASP.NET MVC.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/mwijnands/CacheTempData/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/mwijnands/CacheTempData/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="cachetempdata" class="anchor" href="#cachetempdata"><span class="octicon octicon-link"></span></a>CacheTempData</h1>
+
+<p><code>CacheTempData</code> is an ObjectCache-based TempData provider for ASP.NET MVC. The default <code>ITempDataProvider</code> implementation included in ASP.NET MVC uses <code>SessionState</code>. One of the problems with <code>SessionState</code> is that <a href="http://johnculviner.com/asp-net-concurrent-ajax-requests-and-session-state-blocking/">it blocks concurrent ajax requests</a>. <code>CacheTempData</code> solves this problem by storing <code>TempData</code> in <code>MemoryCache</code> (or any other <code>ObjectCache</code> implementation).</p>
+
+<p><a href="https://ci.appveyor.com/project/mwijnands/cachetempdata"><img src="http://img.shields.io/appveyor/ci/mwijnands/cachetempdata.svg?style=flat" alt="Build status"></a> <a href="https://www.nuget.org/packages/XperiCode.CacheTempData"><img src="http://img.shields.io/nuget/v/XperiCode.CacheTempData.svg?style=flat" alt="NuGet version"></a></p>
+
+<h1>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h1>
+
+<p>The <code>CacheTempData</code> package is available at <a href="https://www.nuget.org/packages/XperiCode.CacheTempData">NuGet</a>. To install <code>CacheTempData</code>, run the following command in the <a href="http://docs.nuget.org/docs/start-here/using-the-package-manager-console">Package Manager Console</a>:</p>
+
+<blockquote>
+<h3>
+<a name="install-package-xpericodecachetempdata" class="anchor" href="#install-package-xpericodecachetempdata"><span class="octicon octicon-link"></span></a>Install-Package XperiCode.CacheTempData</h3>
+</blockquote>
+
+<h2>
+<a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>Documentation</h2>
+
+<p>There are multiple ways to use an alternative <code>ITempDataProvider</code> implementation in your ASP.NET MVC application. Jonathan George wrote a <a href="http://consultingblogs.emc.com/jonathangeorge/archive/2009/10/14/using-an-alternative-itempdataprovider-implementation-in-asp-net-mvc.aspx">nice article on the subject</a>. You can also checkout the <a href="https://github.com/mwijnands/CacheTempData/tree/master/CacheTempData.Sample">Sample application on GitHub</a>.</p>
+
+<h2>
+<a name="release-notes" class="anchor" href="#release-notes"><span class="octicon octicon-link"></span></a>Release notes</h2>
+
+<h4>
+<a name="v091" class="anchor" href="#v091"><span class="octicon octicon-link"></span></a>v0.9.1</h4>
+
+<ul>
+<li>Removed constructor dependency on <code>HttpContextBase</code>
+</li>
+<li>Changed Microsoft.AspNet.Mvc dependencies to 5.0.0 (5.2.2 was unnecessary)</li>
+<li>
+<code>TempData</code> is now removed from cache when no values are saved</li>
+</ul>
+
+<h4>
+<a name="v090" class="anchor" href="#v090"><span class="octicon octicon-link"></span></a>v0.9.0</h4>
+
+<ul>
+<li>Initial release</li>
+</ul>
+
+<h2>
+<a name="collaboration" class="anchor" href="#collaboration"><span class="octicon octicon-link"></span></a>Collaboration</h2>
+
+<p>Please report issues if you find any. Pull requests are welcome for documentation and code.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">CacheTempData maintained by <a href="https://github.com/mwijnands">mwijnands</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
