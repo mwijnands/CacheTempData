@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace XperiCode.CacheTempData
 {
-    public class CacheTempDataItem
+    internal class CacheTempDataItem
     {
         public IDictionary<string, object> Data { get; set; }
     }

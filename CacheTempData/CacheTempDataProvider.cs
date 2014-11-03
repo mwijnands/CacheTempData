@@ -11,20 +11,18 @@ namespace XperiCode.CacheTempData
     {
         private const string TempDataSessionIdCookieName = "XperiCode.CacheTempData.SessionId";
 
-        private readonly HttpContextBase _httpContext;
         private readonly ObjectCache _cache;
         private readonly object _lock;
 
-        public CacheTempDataProvider(HttpContextBase httpContext, ObjectCache cache)
+        public CacheTempDataProvider(ObjectCache cache)
         {
-            this._httpContext = httpContext;
             this._cache = cache;
             this._lock = new object();
         }
 
         public IDictionary<string, object> LoadTempData(ControllerContext controllerContext)
         {
-            var cacheKey = GetTempDataCacheKey();
+            var cacheKey = GetTempDataCacheKey(controllerContext.HttpContext);
 
             var tempData = _cache.Get(cacheKey) as CacheTempDataItem;
             if (tempData != null)
@@ -42,6 +40,8 @@ namespace XperiCode.CacheTempData
 
         public void SaveTempData(ControllerContext controllerContext, IDictionary<string, object> values)
         {
+            var cacheKey = GetTempDataCacheKey(controllerContext.HttpContext);
+
             if (values != null && values.Any())
             {
                 var item = new CacheTempDataItem
@@ -49,25 +49,27 @@ namespace XperiCode.CacheTempData
                     Data = values
                 };
 
-                var cacheKey = GetTempDataCacheKey();
-
                 _cache.Set(cacheKey, item, null);
             }
-        }
-  
-        private string GetTempDataCacheKey()
-        {
-            return string.Format("[{0}].[{1}]", TempDataSessionIdCookieName, GetTempDataSessionId());
+            else
+            {
+                _cache.Remove(cacheKey);
+            }
         }
 
-        private string GetTempDataSessionId()
+        internal string GetTempDataCacheKey(HttpContextBase httpContext)
         {
-            if (_httpContext.Response.Cookies.AllKeys.Contains(TempDataSessionIdCookieName))
+            return string.Format("[{0}].[{1}]", TempDataSessionIdCookieName, GetTempDataSessionId(httpContext));
+        }
+
+        internal string GetTempDataSessionId(HttpContextBase httpContext)
+        {
+            if (httpContext.Response.Cookies.AllKeys.Contains(TempDataSessionIdCookieName))
             {
-                return _httpContext.Response.Cookies.Get(TempDataSessionIdCookieName).Value;
+                return httpContext.Response.Cookies.Get(TempDataSessionIdCookieName).Value;
             }
 
-            var cookie = _httpContext.Request.Cookies.Get(TempDataSessionIdCookieName);
+            var cookie = httpContext.Request.Cookies.Get(TempDataSessionIdCookieName);
             if (cookie != null)
             {
                 return cookie.Value;
@@ -75,32 +77,32 @@ namespace XperiCode.CacheTempData
 
             lock (_lock)
             {
-                if (_httpContext.Response.Cookies.AllKeys.Contains(TempDataSessionIdCookieName))
+                if (httpContext.Response.Cookies.AllKeys.Contains(TempDataSessionIdCookieName))
                 {
-                    return _httpContext.Response.Cookies.Get(TempDataSessionIdCookieName).Value;
+                    return httpContext.Response.Cookies.Get(TempDataSessionIdCookieName).Value;
                 }
 
                 var newCookie = new HttpCookie(TempDataSessionIdCookieName, Guid.NewGuid().ToString())
                 {
                     HttpOnly = true,
-                    Path = _httpContext.Request.ApplicationPath,
-                    Secure = IsSecureConnection()
+                    Path = httpContext.Request.ApplicationPath,
+                    Secure = IsSecureConnection(httpContext)
                 };
 
-                _httpContext.Response.Cookies.Add(newCookie);
+                httpContext.Response.Cookies.Add(newCookie);
                 return newCookie.Value;
             }
         }
   
-        private bool IsSecureConnection()
+        internal bool IsSecureConnection(HttpContextBase httpContext)
         {
             try
             {
-                return _httpContext.Request.IsSecureConnection;
+                return httpContext.Request.IsSecureConnection;
             }
             catch (Exception)
             {
-                return _httpContext.Request.Url.Scheme.Equals("https", StringComparison.InvariantCultureIgnoreCase);
+                return httpContext.Request.Url.Scheme.Equals("https", StringComparison.InvariantCultureIgnoreCase);
             }
 
         }

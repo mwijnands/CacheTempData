@@ -10,7 +10,7 @@ namespace XperiCode.CacheTempData.Sample.Controllers
         protected override ITempDataProvider CreateTempDataProvider()
         {
             // A better approach would be to register CacheTempDataProvider as ITempDataProvider using an IoC container.
-            return new CacheTempDataProvider(HttpContext, MemoryCache.Default);
+            return new CacheTempDataProvider(MemoryCache.Default);
         }
     }
 }

@@ -26,8 +26,9 @@ namespace XperiCode.CacheTempData.Tests
             var httpContextMock = new Mock<HttpContextBase>();
             httpContextMock.SetupGet(c => c.Request).Returns(httpRequestMock.Object);
             httpContextMock.SetupGet(c => c.Response).Returns(httpResponseMock.Object);
-            var provider = new CacheTempDataProvider(httpContextMock.Object, cacheMock.Object);
+            var provider = new CacheTempDataProvider(cacheMock.Object);
             var controllerContextMock = new Mock<ControllerContext>();
+            controllerContextMock.SetupGet(c => c.HttpContext).Returns(httpContextMock.Object);
             var values = new Dictionary<string, object> { { "name", "John Doe" } };
 
             provider.SaveTempData(controllerContextMock.Object, values);
@@ -54,8 +55,9 @@ namespace XperiCode.CacheTempData.Tests
             var httpContextMock = new Mock<HttpContextBase>();
             httpContextMock.SetupGet(c => c.Request).Returns(httpRequestMock.Object);
             httpContextMock.SetupGet(c => c.Response).Returns(httpResponseMock.Object);
-            var provider = new CacheTempDataProvider(httpContextMock.Object, cacheMock.Object);
+            var provider = new CacheTempDataProvider(cacheMock.Object);
             var controllerContextMock = new Mock<ControllerContext>();
+            controllerContextMock.SetupGet(c => c.HttpContext).Returns(httpContextMock.Object);
             var values = new Dictionary<string, object> { { "name", "John Doe" } };
 
             provider.SaveTempData(controllerContextMock.Object, values);
@@ -70,7 +72,6 @@ namespace XperiCode.CacheTempData.Tests
         [TestMethod]
         public void Should_Load_And_Remove_TempData_From_Cache()
         {
-
             var httpRequestCookieCollection = new HttpCookieCollection();
             Guid sessionId = Guid.NewGuid();
             httpRequestCookieCollection.Add(new HttpCookie("XperiCode.CacheTempData.SessionId", sessionId.ToString()));
@@ -91,8 +92,9 @@ namespace XperiCode.CacheTempData.Tests
             var httpContextMock = new Mock<HttpContextBase>();
             httpContextMock.SetupGet(c => c.Request).Returns(httpRequestMock.Object);
             httpContextMock.SetupGet(c => c.Response).Returns(httpResponseMock.Object);
-            var provider = new CacheTempDataProvider(httpContextMock.Object, cacheMock.Object);
+            var provider = new CacheTempDataProvider(cacheMock.Object);
             var controllerContextMock = new Mock<ControllerContext>();
+            controllerContextMock.SetupGet(c => c.HttpContext).Returns(httpContextMock.Object);
 
             var values = provider.LoadTempData(controllerContextMock.Object);
 
