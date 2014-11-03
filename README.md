@@ -12,15 +12,15 @@ The `CacheTempData` package is available at [NuGet](https://www.nuget.org/packag
 
 ## Documentation
 
-There are multiple ways to use an alternative ITempDataProvider implementation in your ASP.NET MVC application. Jonathan George wrote a [nice article on the subject](http://consultingblogs.emc.com/jonathangeorge/archive/2009/10/14/using-an-alternative-itempdataprovider-implementation-in-asp-net-mvc.aspx).
+There are multiple ways to use an alternative `ITempDataProvider` implementation in your ASP.NET MVC application. Jonathan George wrote a [nice article on the subject](http://consultingblogs.emc.com/jonathangeorge/archive/2009/10/14/using-an-alternative-itempdataprovider-implementation-in-asp-net-mvc.aspx). You can also checkout the [Sample application on GitHub](https://github.com/mwijnands/CacheTempData/tree/master/CacheTempData.Sample).
 
 ## Release notes
 
 #### v0.9.1
 
-- Removed constructor dependency on HttpContextBase
+- Removed constructor dependency on `HttpContextBase`
 - Changed Microsoft.AspNet.Mvc dependencies to 5.0.0 (5.2.2 was unnecessary)
-- TempData is now removed from cache when no values are saved
+- `TempData` is now removed from cache when no values are saved
 
 #### v0.9.0
 
