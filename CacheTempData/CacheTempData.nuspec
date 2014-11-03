@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <title>CacheTempData</title>
+    <version>$version$</version>
+    <authors>Marcel Wijnands</authors>
+    <projectUrl>http://cachetempdata.xpericode.com/</projectUrl>
+    <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
+    <description>$description$</description>
+    <copyright>$copyright$</copyright>
+    <tags>tempdata tempdataprovider</tags>
+  </metadata>
+</package>

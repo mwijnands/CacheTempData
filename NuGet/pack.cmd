@@ -1,0 +1,1 @@
+nuget pack ../CacheTempData/CacheTempData.csproj -Build -Prop Configuration=Release
