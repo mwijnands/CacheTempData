@@ -8,7 +8,7 @@
 
 The `CacheTempData` package is available at [NuGet](https://www.nuget.org/packages/XperiCode.CacheTempData). To install `CacheTempData`, run the following command in the [Package Manager Console](http://docs.nuget.org/docs/start-here/using-the-package-manager-console):
 
-> ### Install-Package XperiCode.CacheTempData
+> #### Install-Package XperiCode.CacheTempData
 
 ## Documentation
 
